@@ -3,7 +3,7 @@
 ## Phase 1: Foundation & Pub/Sub Mastery
 Focus on setting up the ingestion guide structure and completing the Pub/Sub section.
 
-- [ ] Task: Initialize Domain 1 Index and Pub/Sub structure
+- [x] Task: Initialize Domain 1 Index and Pub/Sub structure (c3f3a48)
     - [ ] Create `docs/ingestion/index.md` as the domain landing page
     - [ ] Create `docs/ingestion/pubsub.md` with section headers
 - [ ] Task: Research and Draft Pub/Sub Summary
