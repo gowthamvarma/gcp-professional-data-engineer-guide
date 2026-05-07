@@ -41,12 +41,17 @@ This guide organizes key Google Cloud services and the specific concepts you nee
 ### **BigQuery**
 *   **Description:** A fully managed, serverless enterprise data warehouse that enables scalable, cost-effective analysis over petabytes of data using SQL.
 *   **Key Topics to Learn:**
-    *   **Partitioning & Clustering:** Optimizing query performance and reducing costs.
+    *   **Partitioning & Clustering:** 10,000 partition limit; clustering column order matters; automatic re-clustering.
+    *   **Federated Queries:** Joining historical BigQuery data with live data in Cloud SQL or Spanner.
     *   **BigLake:** Querying data in GCS, AWS, or Azure as if it were local BigQuery tables.
     *   **Nested and Repeated Fields:** Using Structs and Arrays to avoid expensive joins.
     *   **Materialized Views:** Speeding up aggregate queries with automatic refresh.
     *   **Authorized Views/Datasets:** Controlling access to specific rows/columns.
-    *   **BigQuery ML:** Training and running models (Linear/Logistic, K-means, Time-series) using SQL.
+    *   **BigQuery ML & AI:** 
+        *   **Standard Models:** Linear/Logistic, K-means (`use_auto_class`), Time-series.
+        *   **AI Functions:** `ML.TRANSLATE`, `ML.TRANSCRIBE`, `ML.PROCESS_DOCUMENT`, `ML.ANNOTATE_IMAGE`.
+        *   **Vector Search:** `ML.GENERATE_EMBEDDING` and `VECTOR_SEARCH` for semantic similarity.
+        *   **Remote Models:** Delegating execution to Vertex AI endpoints via Cloud Resource connections.
 *   **Documentation:** [BigQuery Documentation](https://cloud.google.com/bigquery/docs)
 
 ### **Cloud Storage (GCS)**
@@ -81,9 +86,11 @@ This guide organizes key Google Cloud services and the specific concepts you nee
 ### **Dataflow (Apache Beam)**
 *   **Description:** A unified stream and batch data processing service that provides high-throughput, low-latency execution for large-scale data pipelines.
 *   **Key Topics to Learn:**
-    *   **Windowing:** Fixed, Sliding, and Session windows for streaming data.
+    *   **Windowing:** Fixed, Sliding, and Session windows; Triggers and Allowed Lateness.
     *   **Watermarks:** Tracking progress relative to event time and handling late data.
-    *   **Side Inputs:** Injecting slowly-changing lookup data into a processing stream.
+    *   **DoFn Lifecycle:** `setup`, `startBundle`, `processElement`, `finishBundle`, `teardown`.
+    *   **Side Inputs & Multi-output:** Enriching streams and routing data to multiple sinks (TupleTags).
+    *   **Optimizations:** Dataflow Shuffle service; Combiner lifting (`Combine.perKey`); Idempotency.
     *   **Horizontal Autoscaling:** Dynamically scaling workers based on CPU and throughput.
     *   **Exactly-once Processing:** Ensuring data integrity during failures and retries.
 *   **Documentation:** [Dataflow Documentation](https://cloud.google.com/dataflow/docs)
@@ -93,6 +100,10 @@ This guide organizes key Google Cloud services and the specific concepts you nee
 *   **Key Topics to Learn:**
     *   **Ephemeral Clusters:** Running clusters only for the duration of a job to save costs.
     *   **Preemptible VMs:** Using secondary workers for non-critical, cost-sensitive processing.
+    *   **Dataproc Metastore:** Managed Hive Metastore (HMS) for sharing metadata across clusters.
+    *   **Storage Layer:** GCS as the primary storage layer; local HDFS is lost on cluster deletion.
+    *   **Regionality:** Keeping GCS buckets and clusters in the same region for performance.
+    *   **Spark Optimization:** Identifying and handling "data skew" on join keys.
     *   **Component Gateway:** Securely accessing web UIs like Spark History Server and Jupyter.
     *   **Workflow Templates:** Orchestrating a sequence of Spark/Hive jobs.
 *   **Documentation:** [Dataproc Documentation](https://cloud.google.com/dataproc/docs)
@@ -101,9 +112,12 @@ This guide organizes key Google Cloud services and the specific concepts you nee
 *   **Description:** A cloud-native data integration service that provides a visual interface for building and managing ETL/ELT pipelines without writing code.
 *   **Key Topics to Learn:**
     *   **Visual ETL/ELT:** Building pipelines using a low-code/no-code interface.
-    *   **Wrangler:** Using the interactive UI for data cleaning and transformation.
-    *   **CDC Replication:** Synchronizing operational databases (SQL Server, MySQL) with BigQuery in real-time.
+    *   **Execution Engine:** Pipelines are translated into Apache Spark programs running on Dataproc.
+    *   **Wrangler:** Using the interactive UI for data cleaning and transformation (e.g., masking PII).
+    *   **CDC Replication:** Synchronizing MySQL (requires binlog ROW format) or SQL Server to BigQuery.
+    *   **Scaling:** Increasing performance by adjusting worker counts in Dataproc Compute Config.
     *   **Incremental Loads:** Fetching only new or changed records using timestamps or offsets.
+    *   **Private Connectivity:** Private IP configuration with VPC Peering for security.
 *   **Documentation:** [Cloud Data Fusion Documentation](https://cloud.google.com/data-fusion/docs)
 
 ---
@@ -113,9 +127,12 @@ This guide organizes key Google Cloud services and the specific concepts you nee
 ### **Cloud Composer (Apache Airflow)**
 *   **Description:** A fully managed workflow orchestration service built on Apache Airflow, used to author, schedule, and monitor complex data pipelines.
 *   **Key Topics to Learn:**
-    *   **DAG Design:** Creating robust Directed Acyclic Graphs for complex workflows.
+    *   **Architecture:** Built on Google Kubernetes Engine (GKE) and Cloud SQL.
+    *   **Persistence:** GCS bucket stores DAGs and logs; Cloud SQL stores execution history (lost on environment deletion).
+    *   **Connectivity:** IAP-protected Airflow REST API for external triggers.
+    *   **Regionality:** DAG bucket must be in the same region as the environment to minimize latency.
+    *   **DAG Design:** Creating robust Directed Acyclic Graphs; using XComs for small data passing.
     *   **Operators:** Using specialized operators for BigQuery, Dataflow, and GCS.
-    *   **XComs:** Passing small amounts of data between tasks.
     *   **Environment Scaling:** Adjusting worker counts and resource allocation.
 *   **Documentation:** [Cloud Composer Documentation](https://cloud.google.com/composer/docs)
 
@@ -147,3 +164,4 @@ This guide organizes key Google Cloud services and the specific concepts you nee
     *   **Model Registry:** Tracking model versions and lineage.
     *   **Pipelines:** Orchestrating end-to-end ML workflows using Kubeflow.
 *   **Documentation:** [Vertex AI Documentation](https://cloud.google.com/vertex-ai/docs)
+ai/docs)
