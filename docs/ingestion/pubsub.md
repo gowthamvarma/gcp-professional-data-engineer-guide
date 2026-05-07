@@ -2,7 +2,7 @@
 
 Pub/Sub is a global, asynchronous messaging service that decouples senders and receivers. It's the "glue" that holds many real-time data pipelines together.
 
-## Need-to-Know Summary
+## High-Signal Summary
 If you see "real-time," "streaming," or "decoupling" on the exam, your first thought should be Pub/Sub. It's a many-to-many, asynchronous messaging service that handles the heavy lifting of scale and durability for you.
 
 ## Key Concepts
@@ -15,6 +15,9 @@ Ever wished you could "rewind" time? **Snapshot and Seek** lets you do just that
 
 ### BigQuery Subscriptions 🚀 **FAST FACT**
 As of 2026, you don't always need Dataflow! You can stream data directly from Pub/Sub to BigQuery using **BigQuery Subscriptions**. This is simpler and often more cost-effective for simple ingestion patterns.
+
+### Message Filtering 🕵️ **EXAM ALERT**
+Pub/Sub allows you to filter messages at the subscription level. This means a subscriber only receives messages that match a specific attribute or data payload, reducing unnecessary processing and network costs. You can use filtering for selective data processing or routing to different downstream systems.
 
 ---
 *More content to come in the next task!*
