@@ -27,6 +27,10 @@ The exam evaluates your ability to:
 
 ## Repository Contents
 
+### Module Summaries
+- [Introduction to Data Engineering on Google Cloud](./docs/Introduction%20to%20Data%20Engineering%20on%20Google%20Cloud/summary.md)
+
+### Detailed Notes (Coming Soon)
 - **Data Engineering Fundamentals**: Core concepts and best practices.
 - **Storage and Databases**: Bigtable, Cloud Storage, SQL, Spanner, and Firestore.
 - **Data Processing**: Dataflow, Dataproc, and Pub/Sub.
