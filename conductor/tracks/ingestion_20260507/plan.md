@@ -6,7 +6,7 @@ Focus on setting up the ingestion guide structure and completing the Pub/Sub sec
 - [x] Task: Initialize Domain 1 Index and Pub/Sub structure (c3f3a48)
     - [ ] Create `docs/ingestion/index.md` as the domain landing page
     - [ ] Create `docs/ingestion/pubsub.md` with section headers
-- [ ] Task: Research and Draft Pub/Sub Summary
+- [x] Task: Research and Draft Pub/Sub Summary (a44ca63)
     - [ ] Use Chrome/Search to verify 2026 Pub/Sub features (BigQuery Subscriptions, Filtering)
     - [ ] Draft conversational summary following guidelines
 - [ ] Task: Create Pub/Sub Sample Questions
